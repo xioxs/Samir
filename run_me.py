@@ -8,11 +8,13 @@ def inlezen_file(file):
 
     if f.mode == "r":
         for line in f:
-            aa=re.compile(r'\s*([0-9]+(?:\.[0-9]+){3})').findall(line)
-            if len(aa)>2:
-                source=aa[0]
-            else:
-                source=aa[0]
+            #Regex voor IP-adressen uit syslog te filteren. Dit vind alle IP-adressen op 1 regel. Source is altijd het 1ste IP-adres
+            IP=re.compile(r'\s*([0-9]+(?:\.[0-9]+){3})').findall(line)
+
+            #IP[0] is het eerste IP-adres dat gevonden werd in de regel
+            source = IP[0]
+
+            #Neem het op in de lijst
             lijst.append(source)
     return lijst
 
