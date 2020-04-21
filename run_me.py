@@ -19,11 +19,16 @@ def inlezen_file(file):
 
 uniekelijst = set()
 lijst = inlezen_file("log.txt")
-tel_lijst = Counter(lijst)
-for i in tel_lijst.elements():
-    aantal = "{};{}".format(i,tel_lijst[i])
+
+#tel het aantal zelfde IP-adressen in de lijst
+lijst = Counter(lijst)
+
+#ga doorheen de lijst en maak er een simpele CSV van voor in Excel op te nemen
+for i in lijst.elements():
+    aantal = "{};{}".format(i,lijst[i])
     uniekelijst.add(aantal)
 
+#Schrijf output naar file
 with open("output.txt", encoding='utf-8-sig', mode='w+') as f:
     for x in uniekelijst:
         f.write(x+"\n")
