@@ -1,5 +1,4 @@
 import re
-from Stream import Stream
 from collections import Counter
 
 
