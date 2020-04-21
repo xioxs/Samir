@@ -5,21 +5,19 @@ from collections import Counter
 def inlezen_file(file):
     f = open(file, "r")
     lijst = list()
+    for line in f:
+        #Regex voor IP-adressen uit syslog te filteren. Dit vind alle IP-adressen op 1 regel. Source is altijd het 1ste IP-adres
+        IP=re.compile(r'\s*([0-9]+(?:\.[0-9]+){3})').findall(line)
 
-    if f.mode == "r":
-        for line in f:
-            #Regex voor IP-adressen uit syslog te filteren. Dit vind alle IP-adressen op 1 regel. Source is altijd het 1ste IP-adres
-            IP=re.compile(r'\s*([0-9]+(?:\.[0-9]+){3})').findall(line)
+        #IP[0] is het eerste IP-adres dat gevonden werd in de regel
+        source = IP[0]
 
-            #IP[0] is het eerste IP-adres dat gevonden werd in de regel
-            source = IP[0]
-
-            #Neem het op in de lijst
-            lijst.append(source)
+        #Neem het op in de lijst
+        lijst.append(source)
     return lijst
 
 uniekelijst = set()
-lijst = inlezen_file("log.txt")
+lijst = inlezen_file("logfile.txt")
 
 #tel het aantal zelfde IP-adressen in de lijst
 lijst = Counter(lijst)
