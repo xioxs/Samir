@@ -1,7 +1,7 @@
 import re
 from collections import Counter
 
-
+#Functie binnen Python
 def inlezen_file(file):
     f = open(file, "r")
     lijst = list()
