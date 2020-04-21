@@ -3,8 +3,14 @@ from collections import Counter
 
 #Functie binnen Python
 def inlezen_file(file):
+
+    #openen van bestand logfile.txt
     f = open(file, "r")
+
+    #lege lijst aanmaken
     lijst = list()
+
+    #Elke regel uitlezen van logfile.txt
     for line in f:
         #Regex voor IP-adressen uit syslog te filteren. Dit vind alle IP-adressen op 1 regel. Source is altijd het 1ste IP-adres
         IP=re.compile(r'\s*([0-9]+(?:\.[0-9]+){3})').findall(line)
