@@ -30,7 +30,3 @@ with open("output.txt", encoding='utf-8-sig', mode='w+') as f:
 
 
 
-
-
-
-
